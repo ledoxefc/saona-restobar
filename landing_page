@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saona Resto Bar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Decoraciones tropicales */
+        .tropical-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 250px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 250"><defs><linearGradient id="leaf1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%2315a38a;stop-opacity:1" /><stop offset="100%" style="stop-color:%2310826e;stop-opacity:1" /></linearGradient><linearGradient id="leaf2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:%2320b894;stop-opacity:1" /><stop offset="100%" style="stop-color:%2315a38a;stop-opacity:1" /></linearGradient></defs><ellipse cx="100" cy="80" rx="80" ry="120" fill="url(%23leaf1)" transform="rotate(-25 100 80)"/><ellipse cx="200" cy="60" rx="70" ry="140" fill="url(%23leaf2)" transform="rotate(15 200 60)"/><path d="M 300 50 Q 320 80 300 120 Q 280 80 300 50" fill="%23ff69b4" opacity="0.8"/><path d="M 320 40 Q 340 70 320 110 Q 300 70 320 40" fill="%23ff1493" opacity="0.7"/><ellipse cx="900" cy="70" rx="90" ry="130" fill="url(%23leaf1)" transform="rotate(20 900 70)"/><ellipse cx="1000" cy="90" rx="75" ry="125" fill="url(%23leaf2)" transform="rotate(-15 1000 90)"/><path d="M 1100 60 Q 1120 90 1100 130 Q 1080 90 1100 60" fill="%23ff69b4" opacity="0.8"/></svg>') no-repeat center top;
+            background-size: cover;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .tropical-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 300px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><defs><linearGradient id="leaf3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%2315a38a;stop-opacity:1" /><stop offset="100%" style="stop-color:%2310826e;stop-opacity:1" /></linearGradient><linearGradient id="leaf4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:%2320b894;stop-opacity:1" /><stop offset="100%" style="stop-color:%2315a38a;stop-opacity:1" /></linearGradient><radialGradient id="palm"><stop offset="0%" style="stop-color:%231a9e7e;stop-opacity:1" /><stop offset="100%" style="stop-color:%230d6e57;stop-opacity:1" /></radialGradient></defs><ellipse cx="150" cy="250" rx="100" ry="140" fill="url(%23leaf3)" transform="rotate(30 150 250)"/><ellipse cx="80" cy="220" rx="85" ry="130" fill="url(%23leaf4)" transform="rotate(-20 80 220)"/><path d="M 250 200 Q 270 230 250 270 Q 230 230 250 200" fill="%23ff69b4" opacity="0.8"/><path d="M 270 190 Q 290 220 270 260 Q 250 220 270 190" fill="%23ff1493" opacity="0.7"/><g transform="translate(600, 180)"><path d="M 0 0 L -40 -80 L -20 -70 L -50 -120 L -25 -100 L -40 -140 L 0 0" fill="url(%23palm)"/><path d="M 0 0 L 40 -80 L 20 -70 L 50 -120 L 25 -100 L 40 -140 L 0 0" fill="url(%23palm)"/><path d="M 0 0 L -80 -40 L -70 -20 L -120 -50 L -100 -25 L -140 -40 L 0 0" fill="url(%23palm)"/><path d="M 0 0 L 80 -40 L 70 -20 L 120 -50 L 100 -25 L 140 -40 L 0 0" fill="url(%23palm)"/></g><ellipse cx="1000" cy="230" rx="95" ry="135" fill="url(%23leaf3)" transform="rotate(-25 1000 230)"/><ellipse cx="1100" cy="250" rx="90" ry="140" fill="url(%23leaf4)" transform="rotate(20 1100 250)"/></svg>') no-repeat center bottom;
+            background-size: cover;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Contenido central */
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Logo y sol */
+        .logo-container {
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .sun {
+            width: 150px;
+            height: 80px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .sun::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 30px;
+            border: 4px solid #ffd700;
+            border-bottom: none;
+            border-radius: 100px 100px 0 0;
+        }
+
+        .sun-ray {
+            position: absolute;
+            background: #ffd700;
+            width: 6px;
+            height: 25px;
+            border-radius: 3px;
+            top: -5px;
+            left: 50%;
+            transform-origin: center 35px;
+        }
+
+        .sun-ray:nth-child(1) { transform: translateX(-50%) rotate(-60deg); }
+        .sun-ray:nth-child(2) { transform: translateX(-50%) rotate(-30deg); }
+        .sun-ray:nth-child(3) { transform: translateX(-50%) rotate(0deg); }
+        .sun-ray:nth-child(4) { transform: translateX(-50%) rotate(30deg); }
+        .sun-ray:nth-child(5) { transform: translateX(-50%) rotate(60deg); }
+
+        .logo-text {
+            font-size: 72px;
+            color: #5dd3d0;
+            font-family: 'Brush Script MT', cursive;
+            font-weight: normal;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo-subtitle {
+            font-size: 24px;
+            color: #333;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo-subtitle .resto {
+            color: #333;
+        }
+
+        .logo-subtitle .bar {
+            color: #ffd700;
+        }
+
+        /* Botones de navegación */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #5dd3d0 0%, #4bb8b5 100%);
+            color: white;
+            text-decoration: none;
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(93, 211, 208, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(93, 211, 208, 0.4);
+            background: linear-gradient(135deg, #4bb8b5 0%, #3da09d 100%);
+        }
+
+        .nav-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tropical-top {
+                height: 180px;
+            }
+
+            .tropical-bottom {
+                height: 220px;
+            }
+
+            .logo-text {
+                font-size: 56px;
+            }
+
+            .logo-subtitle {
+                font-size: 20px;
+            }
+
+            .sun {
+                width: 120px;
+                height: 60px;
+            }
+
+            .nav-buttons {
+                gap: 15px;
+            }
+
+            .nav-button {
+                padding: 15px 35px;
+                font-size: 16px;
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .tropical-top {
+                height: 150px;
+            }
+
+            .tropical-bottom {
+                height: 180px;
+            }
+
+            .logo-text {
+                font-size: 48px;
+            }
+
+            .logo-subtitle {
+                font-size: 18px;
+            }
+
+            .sun {
+                width: 100px;
+                height: 50px;
+                margin-bottom: 15px;
+            }
+
+            .sun::before {
+                width: 80px;
+                height: 25px;
+                border-width: 3px;
+            }
+
+            .sun-ray {
+                height: 20px;
+            }
+
+            .nav-button {
+                padding: 14px 30px;
+                font-size: 15px;
+            }
+
+            .logo-container {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tropical-top"></div>
+        
+        <div class="content">
+            <div class="logo-container">
+                <div class="sun">
+                    <div class="sun-ray"></div>
+                    <div class="sun-ray"></div>
+                    <div class="sun-ray"></div>
+                    <div class="sun-ray"></div>
+                    <div class="sun-ray"></div>
+                </div>
+                <div class="logo-text">Saona</div>
+                <div class="logo-subtitle">
+                    <span class="resto">RESTO</span><span class="bar">BAR</span>
+                </div>
+            </div>
+
+            <nav class="nav-buttons">
+                <a href="#carta" class="nav-button">Nuestra Carta</a>
+                <a href="https://instagram.com/saona" class="nav-button" target="_blank">Instagram</a>
+                <a href="#waffles" class="nav-button">Willis Waffles</a>
+                <a href="#contacto" class="nav-button">Contacto</a>
+            </nav>
+        </div>
+
+        <div class="tropical-bottom"></div>
+    </div>
+</body>
+</html>
